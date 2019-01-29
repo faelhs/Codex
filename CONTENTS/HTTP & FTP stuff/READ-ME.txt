@@ -1,0 +1,1 @@
+Put [Codex folder] in your HTTP server root folder (www).

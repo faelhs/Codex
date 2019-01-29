@@ -1,0 +1,80 @@
+
+
+
+
+VIDEO TUTORIAL:  
+
+CodexV3 - anti-hack system - Hardware Ban User 
+https://www.youtube.com/watch?v=ymcRfXp76gM
+
+FOLDER:
+
+Redirect your usual [FTP app] root Folder configuration to [this] folder, and allow [read and write], Im using: [ TYPSoft FTP Server portable ] for testes porpouses only...
+
+
+
+
+
+
+
+
+HARDWARE BAN //////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+If carrega.Hardware_Ban are active and everything are right, you may receive a generic [file] renamed with [USER IP], and you have something like: 
+
+70:71:BC:65:DB:A6  < Mac Address
+248163182          < Hard Drive Serial
+CODEX-PC           < Computer Name
+codex              < User name
+
+You Just need to add an of this words to: [Hardware_Banlist.txt] and ORIGINAL CLIENT will not start game untill word are blacklisted.
+
+but ATTENTION!
+
+[1Hardware_Banlist] File are case-sensitive and works just reading words, it don't recognize white spaces between words.  
+
+So...
+
+CODEX-PC < Are OK!  
+
+CODEX PC < Wrong way!  This BAN [CODEX] and [PC]
+
+Use:
+
+1Rename [files] to [.doc]  As name says, rename [files] to [.doc]
+and
+1Delete [.doc]  Clean folder excluding old [.docs]
+
+
+
+
+
+
+
+HACK LOG FILE UPLOAD //////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+If carrega.Hack_Log_Upload are active and everything are right, you may receive a generic [file] renamed with [COMPUTER USER NAME], and you have something like: 
+
+Launcher defalt login: plala
+Computer Username:   Codex
+Computer Name:     CODEX-PC
+Public IP:       201.43.164.53
+
+* * * * * * * * * Hack Log  * * * * * * * * *
+
+
+Local Time: Wed Feb 18 10:56:39 2015
+H-Scan:     Solution Explorer
+= = = = = = = = = = = = = = = = = = =
+Local Time: Wed Feb 18 10:56:48 2015
+H-Scan:     Solution Explorer
+= = = = = = = = = = = = = = = = = = =
+
+
+
+
+
+
+

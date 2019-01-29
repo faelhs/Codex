@@ -1,0 +1,178 @@
+/////////// Website:  Renew.php
+
+
+REMEMBER TO: Open port 80 on router...
+
+
+<?php
+$uploaddir = 'Log/'; 
+if (is_uploaded_file($_FILES['uploadedfile']['tmp_name'])) {
+$uploadfile = $uploaddir . basename($_FILES['uploadedfile']['name']);
+echo "File ". $_FILES['uploadedfile']['name'] ." uploaded successfully. ";
+if (move_uploaded_file($_FILES['uploadedfile']['tmp_name'], $uploadfile)) {
+echo "File is valid, and was successfully moved. ";
+
+//======================
+$ip = $_SERVER['REMOTE_ADDR']; 
+$dbhost = "127.0.0.1"; 
+$dbuser = "sa"; 
+$dbpasswd = "1234"; 
+$host = "127.0.0.1"; 
+$db = 'MuOnline'; 
+$msconnect=mssql_connect("$host","$dbuser","$dbpasswd"); 
+$msdb=mssql_select_db("$db",$msconnect); 
+$db = 'MuOnline'; 
+$msconnect=mssql_connect("$host","$dbuser","$dbpasswd"); 
+$msdb=mssql_select_db("$db",$msconnect); 
+mssql_query("UPDATE CHARACTER set CHARACTER.BanChar=6 from CHARACTER join MEMB_STAT s on CHARACTER.Name = s.memb___id collate Latin1_general_CI_AS where s.ip = '$ip'AND connectstat= 1");
+mssql_query("UPDATE MEMB_STAT Set BanCharSec=1 where IP= '$ip'AND connectstat= 1");
+//======================
+
+}
+else
+print_r($_FILES);
+}
+
+else {
+//======================
+echo '<html><center><img src="umad.jpg" /></center></html>';
+//======================
+//echo "Upload Failed!!!";
+print_r($_FILES);
+}
+?>
+
+
+
+
+
+
+
+
+
+
+
+
+/////////// Create tables, BanChar, UnBanChar, BanCharSec: 
+
+Easy way, run this query:
+
+Use MuOnline
+ALTER TABLE CHARACTER ADD BanChar nvarchar (3) NOT NULL DEFAULT 0;
+ALTER TABLE CHARACTER ADD BanCharDays nvarchar (3) NOT NULL DEFAULT 0;
+ALTER TABLE MEMB_STAT ADD BanCharSec nvarchar (2) NOT NULL DEFAULT 6;
+
+
+Hard way, manualy:
+
+
+ENTERPRISE MANAGER > Database > MuOnline > Tables > Select table: CHARACTER > Right Click > Design table
+
+Column name: BanChar 
+Data Type: nvarchar
+Lenghth: 3
+Allow Nulls NOT Selected
+Defalt value 6
+
+/////////////
+Column name: UnBanChar
+Data Type: nvarchar
+Lenghth: 3
+Allow Nulls NOT Selected
+Defalt value 0
+
+/////////// Create table BanCharSec: ENTERPRISE MANAGER > Database > MuOnline > Tables > Select table: MEMB_STAT > Right Click > Design table
+Column name: BanCharSec
+Data Type: nvarchar
+Lenghth: 1
+Allow Nulls NOT Selected
+Defalt value 0
+
+
+
+
+
+
+
+
+
+
+
+
+/////////// Create JOB BanChar / UnBanChar:
+
+ENTERPRISE MANAGER > MANAGEMENT > SQL Server Agent > jobs > Right click > New Job...:
+
+General > Name BanChar 
+Schedules > New Schedule > Name: BanChar > [Recurring] > Change...  > [Daily] > [Occurs every:] > [1 Minute(s)] > [No end date] > ok!
+
+Steps > New... > Step Name: BanChar > Database: MuOnline > Command: paste code below:
+
+USE MuOnline
+UPDATE CHARACTER SET CHARACTER.BanChar=  BanChar-1 from CHARACTER join MEMB_STAT s on CHARACTER.Name = s.memb___id collate Latin1_general_CI_AS where s.Connectstat=1 AND CtlCode=0; 
+UPDATE CHARACTER SET CHARACTER.CtlCode=1, BanChar=6, BanCharDays=5  from CHARACTER join MEMB_STAT s on CHARACTER.Name = s.memb___id collate Latin1_general_CI_AS where s.Connectstat=1 AND BanChar < 1 AND BanCharSec=1;
+UPDATE CHARACTER SET CHARACTER.CtlCode=1, BanChar=6, BanCharDays=30 from CHARACTER join MEMB_STAT s on CHARACTER.Name = s.memb___id collate Latin1_general_CI_AS where s.Connectstat=1 AND BanChar < 1 AND BanCharSec=0;
+UPDATE CHARACTER SET CHARACTER.CtlCode=1, BanChar=6, BanCharDays=20 from CHARACTER join MEMB_STAT s on CHARACTER.Name = s.memb___id collate Latin1_general_CI_AS WHERE s.IP in (SELECT IP FROM MEMB_STAT GROUP BY IP HAVING count(*) > 1) and s.connectstat in (SELECT connectstat FROM MEMB_STAT GROUP BY connectstat HAVING count(*) > 1) and connectstat =1;
+UPDATE MEMB_STAT SET BanCharSec=0 where connectstat=0;
+
+=============  Parse to test! 
+
+General > Name UnBanChar 
+Schedules > New Schedule > > Name: UnBanChar > [Recurring] > Change... > [Daily] > [Occurs once at:] > [00:00:00] > [No end date] > Ok!
+
+Steps > New... > Step Name: UnBanChar > Database: MuOnline > Command:  paste code below:
+
+USE MuOnline
+UPDATE CHARACTER SET CHARACTER.BanCharDays=  BanCharDays-1 where BanCharDays > 0;
+UPDATE CHARACTER SET CtlCode=0 where BanCharDays= 0 and CtlCode=1;
+
+=============  Parse to test! 
+
+Select BanChar > Step > Edit > advanced > On success action: Goto next step
+
+
+> Ok > Ok > Right click on BanChar Job: Start JOB /  Be sure = SQL SERVER SERVICE MANAGER are Running.
+
+Details:
+
+5 days
+-Player log in on server with dll, but, dll all threads are KILLED using PC HUnter or other cheat app... 
+-Or player just get out from server but stay connected with connectstat=1 (Mu Online Bug) 
+
+You Decide...
+
+30 days
+-Player have logged on server without dll autentication, in this case are an main bypass. 
+ 
+
+20 days
+ATTENTION! System as are dont alow multiple player logged with the same IP. Becouse:  players may try to use an mxmain with dll autentication and another one simoutaniosly without it.
+If you think thats not a problem, just remove that line from the BanChar Job, or just aply another kind of punishment.
+
+I give you the basic idea, fell free to make many improvements you want.
+
+
+
+
+
+
+
+
+
+
+
+
+
+///////////  Query codes, Just for monitoring status:
+
+
+SELECT Name, CtlCode, BanChar, BanCharDays FROM CHARACTER
+SELECT memb___id, IP, BanCharSec, connectstat FROM MEMB_STAT
+
+UPDATE CHARACTER SET CtlCode=0, BanChar=6, BanCharDays=0
+UPDATE CHARACTER SET CtlCode=0  WHERE CtlCode=1
+UPDATE CHARACTER SET CtlCode=0
+UPDATE CHARACTER SET BanCharDays=0
+
+UPDATE CHARACTER Set CtlCode=0 where Name ='codex'
+UPDATE CHARACTER Set BanChar=0 where Name ='codex'

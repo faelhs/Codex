@@ -1,0 +1,328 @@
+
+///////////////////////////////////////////////////////////////////////////////////////////
+// Pack Contents: /////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
+
+To this pack i have used visible GameGaurd and SturtUp (.exe) visible files, your pack need to use hiden files.
+
+Pack details:
+
+Main Fake.exe (hook to Codex.dll) + Codex.dll + c.dll       >> packed with molebox = Mxmain.exe
+GameGuard (visible - hook to GameGuard.dll) + GameGuard.dll >> packed with molebox = GameGuard.exe
+SoundDriver (visible - hook to c.dll) + c.dll               >> packed with molebox = StartUp.exe 
+
+[Warning!] Molebox packer licence will rename files company to: [Katherina Walensky] Also, this packer have a lot of bugs... Fell free to use another ones, maybe Themida.
+
+
+
+
+
+
+
+
+///////////////////////////////////////////////////////////////////////////////////////////
+// StartUp.exe ////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
+
+-StartUp.exe will be renamed: SoundDriver.exe and copy to windows startup folder to start with windows system on restart.
+
+-StartUp.exe need be packed with c.dll inside (Molebox), becouse Mxmain.exe copy one file to Windows Startup folder, in this case: SturtUp.exe.
+
+To remove SoundDriver.exe from windows Startup, just delete that on Startup folder: C:/Documents and Settings/All Users/Start Menu/Programs/Startup/SoundDriver.exe. 
+Or, use the simple way: Windows Start button >> All programs >> Startup >> delete = SoundDriver.exe
+
+
+
+
+
+
+
+///////////////////////////////////////////////////////////////////////////////////////////
+// Admin warnings /////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
+
+You can't system run as administrator when: carrega.Inject_dll_Protection are tuned ON (= 1;), Becouse, if main.exe have admin rights, c.dll can't release (un-freeze) main.exe
+
+But, at first start Main will asked to run as administrador one time, if you have:
+
+carrega.Copy_exe_to_Windows_Startup tuned ON (= 1;), becouse main need to be admin to copy for startup folder
+or
+carrega.Disable_Windows_ASLR        tuned ON (= 1;), becouse main need to be admin to change windows registry values
+
+
+
+
+
+
+
+///////////////////////////////////////////////////////////////////////////////////////////
+// c.dll injector /////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
+
+c.dll just resume Mxmain.exe every 5 seconds, every time that program are closed, dll are unloaded, for windows native programs a log off or reestart unload dll.
+
+[WARNING!] Injector only works on Windows x32 bits system, becouse c.dll are a x32 bits. c.dll will be injected on: Windows "Start Menu" and "Default IME" (Win 7, XP x32 bits), 
+
+
+For x64, you can use your own Game launcher (WindowName) on [carrega.Injected_Window_3 = "LauncherV5";] to inject c.dll, or just hook c.dll on 
+your Launcher and use [carrega.Injected_Window_3] to inject c.dll to another .exe file that are alwais running.
+
+Make sure that [carrega.Launcher_Ativo] are turned ON [= 1;]
+
+
+
+
+
+
+
+///////////////////////////////////////////////////////////////////////////////////////////
+// What are active on this pack? //////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
+
+
+C.dll >> START.cpp:
+
+         carrega.Dll_Build_Option                      = 2; // [CHOICE!] Chose an option: 1= build Gameguard dll [Rename it: GameGuard.Dll], 2= build Inject dll = [Rename it: C.dll] 
+//Mxmain Data:
+	 carrega.MainWindowName                        = "Mxmain";             // Exact the same as Codex.dll       
+	 carrega.MainClassName                         = "ConsoleWindowClass"; // Exact the same as Codex.dll      
+	 carrega.Nome_do_Main	    		       = "Mxmain.exe";           // Exact the same as Codex.dll       
+         carrega.Show_Splash_Message                   = 0; // [I tink a good idea, alwais OFF = 0]  1 = Show a splash message, only use for configuration puposes!	
+	 carrega.Shutdown_Computer                     = 0; // [ATENTION! use at your own risk!] = Someone may not like this GameGuard.dll "feature"...  On/Off =  If GameGuard.dll can't kill Mxmain.exe after all, Guameguard.dll shutdown computer.
+
+
+
+
+//////////////////////////////////////////////////////////////////////////////////////////
+
+
+GameGuard.dll >> START.cpp:
+
+         carrega.Dll_Build_Option                      = 1; // [CHOICE!] Chose an option: 1= build Gameguard dll [Rename it: GameGuard.Dll], 2= build Inject dll = [Rename it: C.dll] 
+//Mxmain Data:
+	 carrega.MainWindowName                        = "Mxmain";             // Exact the same as Codex.dll       
+	 carrega.MainClassName                         = "ConsoleWindowClass"; // Exact the same as Codex.dll      
+	 carrega.Nome_do_Main	    		       = "Mxmain.exe";           // Exact the same as Codex.dll       
+         carrega.Show_Splash_Message                   = 0; // [I tink a good idea, alwais OFF = 0]  1 = Show a splash message, only use for configuration puposes!	
+	 carrega.Shutdown_Computer                     = 0; // [ATENTION! use at your own risk!] = Someone may not like this GameGuard.dll "feature"...  On/Off =  If GameGuard.dll can't kill Mxmain.exe after all, Guameguard.dll shutdown computer.
+	
+
+
+//////////////////////////////////////////////////////////////////////////////////////////
+
+
+Codex.dll >> START.cpp:
+
+string title = _T("Mxmain");  // Set Console Aplciation WindowName ( just for configuration pourposes! )
+SetConsoleTitle(title.c_str());
+	
+     
+//Load TEST.cpp file
+	carrega.TESTE       			       = 1; // On/Off - Start a test cpp file for test new codes
+
+//Load Splash screen image (/GameGuard/Protect.bmd)
+	carrega.Splash_Screen			       = 1; // On/Off - Load splash image (/GameGuard/Protect.bmd)
+
+//Splash messages
+	carrega.Nome_das_Janelas		       = "Codex V5 - Black Edition"; // // [CHOICE!] Splash message Server name
+	carrega.Message_Warning_En                     = 4; // [CHOICE!] Hack detect splash message language:  0 = silent, 1 = Engish, 2 = Portuguese 3 = Open php webpage with splash image and make a Log.txt file with Date / ip
+	carrega.HackSplash_WebSite                     = "http://localhost:8090/Codex/HackSplash/Splash.php";
+
+//Log file [ATENTION !] This is for configuration purposes only!
+	carrega.Log_Txt_Hack                           = 1; // On/Off - Creates a hack log ("GameGuard/Log.txt")
+if (carrega.Log_Txt_Hack == 1){
+MessageBoxA(NULL,"Public HACK DETECTION LOG are active in START.cpp!\n\nWARNING! Log file are Just for configuration purposes!\n\nThink about! Players dont need to know any system DETAILS.\n\nYou can disable this message on START.cpp adding lines intersection: '//' on both lines.","CONFIGURATION MESSAGE", MB_SERVICE_NOTIFICATION | MB_ICONWARNING);}
+	
+	
+    //////////////////////////////////////////////////////////////////////////
+    //Server side / Hardware ban configuration and Hack log upload ///////////
+	//////////////////////////////////////////////////////////////////////////
+
+//Server ban [ATENTION!] >> OPEN ROUTER PORTS: 80 (defalt HTTP) and 21 (defalt FTP)
+	carrega.Server_Ban  			        = 0; // On/Off - [ATENTION !] Need configure your Muserver database, watch video tutorials
+	carrega.DBan_occours                            = 60000; // 60000 Occours every 1 minute
+//Hardware ban
+	carrega.Hardware_Ban                            = 0;             // Get Mac Addrees, PC Name and User name game id (from laucher) and create a file to FTP upload, read banlist every 5 minutes
+	carrega.DHard_occours            	        = 600000;        // 600000, Occours every 10 minutes
+	carrega.IP_Server_and_Hard 		        = "10.0.1.40";   // This IP Need be like: "192.168.1.1" or "adress.sytes.net" without [www, http:// or [port], This IP are used by: FTP Up/Down and server Ban post autenticatition
+	carrega.FTP_User       			        = "codex";       // FTP Server User
+	carrega.FTP_Pass       			        = "1234";        // FTP Server Password
+//Log file upload
+    carrega.Hack_Log_Upload             	        = 0; // On/Off - Creates a Hide hacklog file and upload it to server (inside Hardware Ban folder, are named with computer user name), that uses FTP, when file are uploaded, computer file are deleted.
+	carrega.Log_File_Size_To_upload     	        = 10000; // 10000 = more or less 100 hack detections, only will upload if file are bigger than that.
+	
+
+	//////////////////////////////////////////////////////////////////////////
+    //GameGuard protection and configuration /////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////
+
+// File Names verification	
+	carrega.Check_File_Names 	                 = 1; // On/Off - Check if main.exe, Launcher.exe, Codex.dll file name exist inside folder. Check if Main and dll names are not changed when sturtup. Check if Main window name are changed.
+	carrega.DVerifica_occours                        = 953; // Occours every X miliseconds. [ ATENTION! If antikill by Scans active this value canot be more than 1000 ]
+//Main name and data:
+	carrega.Nome_do_Main				 = "Mxmain.exe";          // Main name 
+	carrega.MainWindowName             	         = "Mxmain";              // Utiliitários Handler.exe >> Main WindowName 
+	carrega.MainClassName               	         = "ConsoleWindowClass";  // Utiliitários Handler.exe >> Main Classname
+//Anti-Hack dll Name:
+	carrega.Nome_da_Dll             	         = "Codex.dll";           // Anti-hack dll name
+//Launcher name and data:
+//Launcher alwais on:
+	carrega.Launcher_Ativo            	         = 1; // On/Off - Check if Launcher always On using Launcher Wintitle / Winclass 
+	carrega.DLauncher_Occours       	         = 939; //Occours every X miliseconds. [ ATENTION! If antikill by Scans active this value canot be more than 1000 ]
+	carrega.Nome_do_Launcher	      	         = "Launcher.exe";            // Launcher name
+	carrega.LauncherWindowName	   	         = "LauncherV5";              // Utiliitários Handler.exe >> Launcher WindowName 
+	carrega.LauncherClassName         	         = "#32770";  // Utiliitários Handler.exe >> Main Classname  
+
+//GaMeGuard.exe protection 
+	carrega.GameGuard_Exe_Protection  	         = 1; // On/Off - This is an active GameGuard.exe protection that prevent kill or freeze anti-hack detectors.
+	carrega.CRC_GameGuard  		      	         = 1; // On/Off - GameGuard.exe file CRC Check 
+	carrega.CRC_GameGuard_Value        	         = 0x477a8361; // CRC check for GameGuard.exe file
+	carrega.GameGuard_Value       	             	 = "GameGuard.exe"; // GameGuard.exe file: Location / name / extension 
+//Dll injection Protection
+	carrega.Inject_dll_Protection    	         = 1; // On/Off - This is an Dll injection protection that prevent kill or freeze anti-hack detectors.
+	carrega.CRC_Inject_dll 		                 = 1; // On/Off - c.dll file CRC Check
+	carrega.CRC_Inject_dll_Value                     = 0x5b9c9abf; // CRC check for c.dll file
+	carrega.Inject_Dll_Value                         = "c.dll"; // Inject.dll file: Location / name / extension
+//Exe victins provided by Windows, this only works on Windows x32, becouse [c.dll] are x32 - Get windows victims using: START.cpp >> carrega.Show_Windows_Window_list    = 1;
+	carrega.Injected_Window_1	      	         = "Start Menu";            // "Start Menu"   (7x32, XPx32)
+	carrega.Injected_Window_2	      	         = "Default IME";           // "Default IME" Monitoring ctrl alt del (7x32, XPx32), Can be: "Battery Meter" (only 7x32),/ "Calculator"(7x32,XPx32) / "Windows Media Player" (7x32,XPx32).
+	carrega.Injected_Window_3	      	         = "LauncherV5";             // "Your Game Launcher window"(All versions) Turn ON, Launcher alwais ON feature	
+//Exe victim started with windows system    
+	carrega.Copy_exe_to_Windows_Startup              = 1; // On/Off
+	carrega.CRC_StartUp  		                 = 1; // On/Off - StartUp.exe file CRC Check 
+	carrega.CRC_StartUp_Value                        = 0x1ce9362d; // CRC check for StartUp.exe file
+	carrega.StartUp_Original_Name                    = "StartUp.exe"; //file that are inside game folder and will be copyed /renamed to Windows startup folder
+	carrega.StartUp_Address_NewName                  = "C:/Documents and Settings/All Users/Start Menu/Programs/Startup/SoundDriver.exe"; //address for all users, all win versions (don't change adrress, Chose anyname you want)
+	
+//Configuration and test
+	carrega.Show_Windows_Window_list                 = 0; // On/Off - Show (on Mxmain fake console aplication) a list of windows system window name to configure dll injector
+	carrega.Test_Main_Win_Class_PID                  = 0; // On/Off - Check if Main values: classwindow, classname and PID are correct
+	carrega.Test_Launcher_Win_Class_PID              = 0; // On/Off - Check if Launcher values: classwindow, classname and PID are correct
+	carrega.GG_Close_Game_immediately                = 0; // [alwais ON = 1]  1 = If any Gameguard stops for any reason, game will close IMMEDIATELY,  0 = Show a splash message (for configuration pupose only!)
+	
+	//////////////////////////////////////////////////////////////////////////
+	//Anti-hack Detectors ////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////     
+	carrega.PAUSE_ALL_DETECTORS                      = 0;     // [alwais OFF = 0] On/Off - =1; = PAUSE ALL ANTI-HACK DETECTORS ACTIVITY (Use only for for configuration purposes)
+//Hide tools detector
+	carrega.Detecta_Hide_Toolz        	         = 1;     // On/Off - Generic Hide toolz / Cheat engine detector - Use at your own risk! 
+	carrega.DHide_occours            	         = 976;   // Occours every X miliseconds. [ ATENTION! If antikill by Scans active this value canot be more than 1000 ]
+//Dump Detector	
+	carrega.Detecta_Dump				 = 1;     // On/Off - Detect application entrypoint and first 16 HexDump
+	carrega.Disable_Windows_ASLR                     = 0;	  // On/Off - Disable windows ASLR for ALL computer users (above xp).   [ ATENTION! Use at your own risk! ] This feature allow dump to read hacks that was created with ASLR, description: Address space layout randomization (ASLR) is a memory-protection process for operating systems (OSes) that guards against buffer-overflow attacks by randomizing the location where system executables are loaded into memory.
+	carrega.DDump_occours				 = 947;   // Occours every X miliseconds. [ ATENTION! If antikill by Scans active this value canot be more than 1000 ]
+//Window name Detector
+	carrega.Detecta_Window				 = 1;     // On/Off - Close GAME when detect Hack WindowName
+	carrega.Close_Window            	         = 1;     // On/Off - Close HACK window, if CLOSE HACK window fail, close GAME. Use to close "especific" apps. This can crash your system.
+	carrega.DWindow_occours				 = 736;   // Occours every X miliseconds. [ ATENTION! If antikill by Scans active this value canot be more than 1000 ]
+//Class name Detector	                 
+	carrega.Detecta_ClassName                        = 1;     // On/Off - Close GAME when detect Hack ClassName
+	carrega.Close_ClassName         	         = 1;     // On/Off - Close HACK ClassName, if CLOSE HACK ClassName fail, close GAME. Use to close "especific" apps. This can crash your system. This detector are good to detect "generic" speed hack created using VB. Exemple: ["WindowsForms10.Window.8.app.0xxxxxx]
+	carrega.DClassName_occours                       = 968;   // Occours every X miliseconds. [ ATENTION! If antikill by Scans active this value canot be more than 1000 ]
+//PID Detector
+	carrega.Detecta_PID			     	 = 1;     // On/Off - Detect application by {name.extension}
+	carrega.DPID_occours		                 = 976;   // Occours every X miliseconds. [ ATENTION! If antikill by Scans active this value canot be more than 1000 ]
+//Heuristic Detector by Window
+	carrega.Detecta_Heuristica_Win		         = 1;     // On/Off - Detect bad Words, are case sensitive and scan WebBrowsers
+	carrega.DHeuristica_Win_occours		         = 596;   // Occours every X miliseconds. [ ATENTION! If antikill by Scans active this value canot be more than 1000 ]
+//Heuristic Detector by Classname
+	carrega.Detecta_Heuristica_Class	         = 1;     // On/Off - Detect bad Words, are case sensitive and scan WebBrowsers
+	carrega.DHeuristica_Class_occours	         = 766;   // Occours every X miliseconds. [ ATENTION! If antikill by Scans active this value canot be more than 1000 ]
+//Heuristic Detector generic
+	carrega.Detecta_Heuristica			 = 1;     // On/Off - Detect bad Words, are case sensitive and scan WebBrowsers
+	carrega.DHeuristica_occours			 = 556;   // Occours every X miliseconds. [ ATENTION! If antikill by Scans active this value canot be more than 1000 ]
+//Heuristic Detector Non-Case sensitive	
+	carrega.Detecta_Heuristica_NC                    = 1;     // On/Off - Detect bad Words, are NON case sensitive and DONT scan webbrowsers
+	carrega.DHeuristica_NC_occours                   = 565;   // Occours every X miliseconds. [ ATENTION! If antikill by Scans active this value canot be more than 1000 ]
+//Speed Detector by Tickcount
+	carrega.Detecta_Speed_Tickcount                  = 1;     // On/Off - Speed hack and System freeze (suspend) detector
+	carrega.DSpeed_occours                           = 500;   // [ ATENTION! ] Don't change this value!
+//Speed Detector by Performance
+	carrega.Detecta_Speed_Performance                = 1;     // On/Off - Speed hack detector
+	carrega.DAnti_Speed_P_occours                    = 969;   // Occours every X miliseconds. [ ATENTION! If antikill by Scans active this value canot be more than 1000 ]
+
+	
+	//////////////////////////////////////////////////////////////////////////
+	// Anti-kill /////////////////////////////////////////////////////////////
+	////////////////////////////////////////////////////////////////////////// 
+
+//Anti-kill Detectors by Scans-active count [ATENTION!] sometimes AKS-Scan may have [ExitProcess] caused by Internet delay on >> (Server Ban / Hardware Ban) 
+	carrega.Anti_Kill_Scans				 = 1;     // On/Off - Detect kill Scans, this are fully based on time occours, so, don't change any detectors time_occours if it are ON!
+	carrega.DAnti_Kill_occours                       = 2000;  // [ATENTION!] This value need be 2x more than detectors. 
+	
+
+	//////////////////////////////////////////////////////////////////////////
+	//code injection Detectors ///////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////
+
+//code injection by dll name	
+	carrega.Detecta_Inject				 = 1;     // On/Off - Detect dll inject (by dll {name.extension}) 
+	carrega.DInject_occours			   	 = 936;   // Occours every X miliseconds. [ ATENTION! If antikill by Scans active this value canot be more than 1000 ]
+
+
+	//////////////////////////////////////////////////////////////////////////
+	//virtual memorty protection /////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////	
+	
+//Virtual Memory Protection
+	carrega.Virtual_Memory_Protect		          = 0;     // On/Off - protect code from auteration on virtual memory (need be configured) on [Virtual_Memory.cpp]
+	carrega.Memory_Buffer_P                           = 0;     // On/Off - [CONFIGURATION!] Message box with address buffer for configuration! Need to configure values on: Detecta_Virtual_Memory.cpp
+	carrega.Virtual_Mem_occours                       = 965;   // Occours every X miliseconds. [ ATENTION! If antikill by Scans active this value canot be more than 1000 ]
+//Rebuild main data (Watch Video Tutorial to understand this function)
+	carrega.Rebuild_Main_Data                         = 0;    // On/Off - Need configure Rebuild_Main_Data.cpp or system crash! = Watch Video Tutorial
+	
+	
+	//////////////////////////////////////////////////////////////////////////
+	//Serial / version / ip configuration ////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////
+
+//Load Data from dll (Watch Video Tutorial to understand this function)
+	carrega.Carrega_serial_versao		          = 0;     // On/Off - Menset Ip/Serial/Version, without codex.dll mxmain dont make any autentication funciton.
+	carrega.Serial					  = "Your_Serial_Here";	// (16) Your server serial = Watch video tutoral 
+	carrega.Versao					  = "YourV";				// (5)  Your server version
+    carrega.IP						  = "201.43.213.85";	    //      Your server Ip
+		
+	
+	//////////////////////////////////////////////////////////////////////////
+	// Files CRC Check ///////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////
+
+	//////////////////////////////////////////////////////////////////////////
+	carrega.Ativa_CRC_Geral                         = 1;  // [alwais ON = 1] = This one enable CRC check for all files that are turned ON
+	//////////////////////////////////////////////////////////////////////////
+
+	carrega.CRC_Launcher			        = 0;          // On/Off = CRC Do Launcher
+	carrega.CRC_LauncherEXE	    		        = 0xc0f938ae; // Launcher
+
+	carrega.CRC_ProtectBMP		    	        = 1;          // On/Off = CRC da Protect.bmd 
+	carrega.CRC_Protect  				= 0xfd997fbd; // Protect.BMP v4 = 446ea76b
+
+	carrega.CRC_Player					= 0;          // On/Off = CRC Player.bmd 
+	carrega.CRC_PlayerBMD				= 0xd77eb164; // Player.BMD 
+
+	carrega.CRC_WebZenLogoOZJ			= 0;          // On/Off = Splash image 
+	carrega.CRC_WebLogo                             = 0xacdd7f2e; // WebZenlogo.OZJ 
+	
+	carrega.CRC_7_Terrains				= 0;          // On/Off = 7 first Terrain ("Data/WorldX/EncTerrainX.att") 
+	carrega.CRC_Terrain1				= 0x5339965e;			// Terrain 1
+	carrega.CRC_Terrain2				= 0xc3e83648;			// Terrain 2 
+	carrega.CRC_Terrain3				= 0x0847c665;			// Terrain 3 
+	carrega.CRC_Terrain4				= 0x7cc0297c;			// Terrain 4 
+	carrega.CRC_Terrain5				= 0x76487ad9;			// Terrain 5 
+	carrega.CRC_Terrain6				= 0xb3b0cf70;			// Terrain 6 
+	carrega.CRC_Terrain7				= 0x98fb5fca;           // Terrain 7 
+
+	//////////////////////////////////////////////////////////////////////////
+	// Load External files ///////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////
+
+//Carregar Glow.dll (Mu Online)
+	carrega.GlowDLL					= 0; // On/Off - Load Glow.dll inside gameguard folder. (Glow.dll not included). only works in v97
+	
+//Carregar Minimizer / autoclick .dll
+	carrega.MinimizerDLL    			= 0; // On/Off - Start some dll by name (in Gameguard folder), use it for start some Minimizer, autoclick...
+    carrega.Nome_da_DLL		         	        = "GameGuard/Minimizer.dll"; //Some dll = Adress/name.extension  
+}
+
+
+

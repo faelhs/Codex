@@ -1,0 +1,115 @@
+Do you LIKE this project?  So, let your LIKE on my youtube channel.
+
+=========================================
+
+Codex.dll v5 - Black Edition (C++ full Source code) - by VertexBrasil
+
+=========================================
+
+Features:
+
+- Easy ON/OFF switch to all features on START.cpp
+- Splash Screen on start.
+- Hack detect splash screen = english, portuguese, silent, Message with hack name that was detected, browser website that register user IP
+- Server name easy configuration for all splash messages
+- Hack detect Log generation = Gameguard/Log.txt (For configuration purposes only)
+
+=========================================
+
+Load external files:
+
+- Minimizer.dll (Shortcut: F9) 
+- Glow.dll Mu v97 
+
+=========================================
+
+- Protected mxmain.exe serial, version, ip and data using realloc and memoryset.
+
+=========================================
+
+All Functionality programs are included:
+
+- Minimizer.dll
+- HTTP and FTP Server side stuff
+- Codex.dll ready to use with some detectors active (English and Portuguese splash)
+- GameGaurd / Sturtup withowt hook, ready to use
+
+Applications:
+
+- CRC Generator           (portable)
+- Dll hooker              (portable)
+- Dump generator          (portable)
+- Handler / GetWindowText (portable)
+- Security Packer         (portable)
+
+=========================================
+
+Hack detection:
+
+- WN-Scan -  Window Title scan. This one close Game window.
+- WN-Close - Same detection as WN-Scan (empty hack database). This one close hack window silently, if can't close hack window, close game.
+- CN-Scan -  Class window scan close Game window
+- CN-Close - Same detection as CN-Scan (empty hack database), this one close Hack window silently, if can't close hack window, close game.
+- D-Scan -   Dump - Entrypoint + 8 hex Dump - Feature to disable Windows Address space layout randomization (ASLR) included. And switch that add token privileges for Widnows XP, Detector works on Windows XP.
+- PID-Scan - Process ID 
+- H-Scan -   Heuristic - Bad Words 
+- HW-Scan -  Heuristic - Windowtext Bad Words, Detect any "bad word" on WindowName, object and parent. 
+- HC-Scan -  Heuristic - Classwindow Bad Words, Detect any "bad word" on WindowClass, detect any "generic" WindowsForms
+- HNC-Scan - Heuristic - Bad Words Non-case sensitive
+- HT-Scan -  Hide tools - Detect generic Hide Tools like Cheat engine, Hide Toolz, etc.
+- VM-Scan -  Virtual memory - Detect virtual memory block changes 
+
+=========================================
+
+Speed detection:
+- ST-Scan - Detect game speed and system freeze by Tickcount 
+- SP-Scan - Detect game speed by hardware performance 
+=========================================
+
+Anti-Injection:
+- I-Scan - Detect dll injection using dll illegal names blacklist
+
+=========================================
+
+Anti-Kill:
+- GameGuard.exe, Windows startup.exe, and injector for active protection - Protect Anti-hack from kill or freeze
+- Rebuild main data - Allow destroy Main.exe hexadecimal data sections and rebuild it again on virtual memory with Memset. [Main don't work without Codex.dll]
+- Main.exe one single instance - If Launcher / Main active protection are active, just one main instance are alowed at time.
+- Enable and Disable Admin rights for Main.exe
+=========================================
+
+Ban:
+- Hardware Ban (FTP) - Server side blacklist that ban Users hardware: Mac adress, hard drive serial, computer name or computer user name 
+- Hack detection log file upload (FTP) - Upload file when size are more than "x" lines
+- Server Ban (PHP) - Server side protection, ban user account or character using SQL database. Protect Anti-Hack from bypass or kill process [Mu Server "ConnectStat" need to work withowt bugs]
+=========================================
+
+Files protection:
+  - L-Scan - Launcher alwais ON check
+  - FN-Scan - File name Scan - Check file folder names existence, check Main.exe WindowName, check file Handler for dlls (Launcher/Codex) and exe files (Main) Game only start with correct name. 
+  - CRC-Scan - CRC files scan protection:      
+  -Launcher.exe
+  -c.dll
+  -GameGuard.exe 
+  -Protect.bmp 
+  -Player.bmd 
+  -WebZenLogo.OZJ   
+  -Terrain 1 to 7
+
+=========================================
+
+Tanks to:
+
+f1x = Dump codes
+Suzana ADM = Heuristic codes
+ARIES (Dark Crow) = HeuristicNC codes
+
+RaGEZONE - MMO development community
+RaGEZONE foruns users 
+
+
+=========================================
+
+Download:
+
+https://www.youtube.com/user/vertexbrasil

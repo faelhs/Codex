@@ -1,0 +1,31 @@
+
+Codex.dll - anti-hack system - Add Dump with Dump generantor / OllyDbg 2.0
+https://www.youtube.com/watch?v=DwoIcowQPpA
+
+
+WARNING! video are out of date. 
+
+New V4 version don't require update hack amount on Dump.h
+
+
+
+//////////////////////////////////////////////////
+
+
+How to use, Dump generator output for an example:
+
+IMPORTANT!  Run [Dump generator.exe] as administrator
+
+==============================================
+$004A9001 < Entripoint
+60 E8 03 00 00 00 E9 EB 04 5D 45 55 C3 E8 01 00 00 00 EB 5D BB ED FF FF FF 03 DD 81 EB 00 90 0A   <32 Hexdump
+PS Get Dump   <Name
+==============================================
+
+For {Detecta_Dump.cpp} you need use only the first 16 Hexdump... it need looks like:
+
+{0x4A9001, {0x60, 0xE8, 0x03, 0x00, 0x00, 0x00, 0x09, 0xEB, 0x04C, 0x5D, 0x45, 0x55, 0xC3, 0xE8, 0x01, 0x00}}, //PS Get Dump 
+
+
+
+

@@ -1,0 +1,14 @@
+Codex anti-hack system - Hook antihack dll with Stud_PE
+https://www.youtube.com/watch?v=ykUvBz0u1nw
+
+
+Codex - anti-hack system - Hook dll files with OllyDbg
+https://www.youtube.com/watch?v=BSoNMibNjI8
+
+or:
+
+FILE > Open PE FILE ( OPEN MAIN.EXE )
+
+window = Functions > Select "dll" > right clic > Add New Import > Dll selection = select .dll
+
+> Select function > select "Main or another thing" > OK > Add to list > ADD > Back to window "Headers" = save file.

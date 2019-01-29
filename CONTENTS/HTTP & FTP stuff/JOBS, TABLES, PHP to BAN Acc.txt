@@ -1,0 +1,179 @@
+/////////// Website:  Renew.php
+
+
+REMEMBER TO: Open port 80 on router...
+
+
+
+<?php
+$uploaddir = 'Log/'; 
+if (is_uploaded_file($_FILES['uploadedfile']['tmp_name'])) {
+$uploadfile = $uploaddir . basename($_FILES['uploadedfile']['name']);
+echo "File ". $_FILES['uploadedfile']['name'] ." uploaded successfully. ";
+if (move_uploaded_file($_FILES['uploadedfile']['tmp_name'], $uploadfile)) {
+echo "File is valid, and was successfully moved. ";
+
+//======================
+$ip = $_SERVER['REMOTE_ADDR']; 
+$dbhost = "127.0.0.1"; 
+$dbuser = "sa"; 
+$dbpasswd = "1234"; 
+$host = "127.0.0.1"; 
+$db = 'MuOnline'; 
+$msconnect=mssql_connect("$host","$dbuser","$dbpasswd"); 
+$msdb=mssql_select_db("$db",$msconnect); 
+$db = 'MuOnline'; 
+$msconnect=mssql_connect("$host","$dbuser","$dbpasswd"); 
+$msdb=mssql_select_db("$db",$msconnect); 
+mssql_query("UPDATE MEMB_INFO set MEMB_INFO.ban=6 from MEMB_INFO join MEMB_STAT s on MEMB_INFO.memb___id = s.memb___id collate Latin1_general_CI_AS where s.ip = '$ip'AND connectstat= 1");
+mssql_query("UPDATE MEMB_STAT Set BanSec=1 where IP= '$ip'AND connectstat= 1");
+//======================
+
+}
+else
+print_r($_FILES);
+}
+
+else {
+//======================
+echo '<html><center><img src="umad.jpg" /></center></html>';
+//======================
+//echo "Upload Failed!!!";
+print_r($_FILES);
+}
+?>
+
+
+
+
+
+
+
+
+
+
+
+
+/////////// Create tables, Ban, UnBan, BanSec: 
+
+Easy way, run this query:
+
+Use MuOnline
+ALTER TABLE MEMB_INFO ADD Ban nvarchar (3) NOT NULL DEFAULT 0;
+ALTER TABLE MEMB_INFO ADD BanDays nvarchar (3) NOT NULL DEFAULT 0;
+ALTER TABLE MEMB_STAT ADD BanSec nvarchar (2) NOT NULL DEFAULT 6;
+
+
+Hard way, manualy:
+
+
+ENTERPRISE MANAGER > Database > MuOnline > Tables > Select table: MEMB_INFO > Right Click > Design table
+
+Column name: Ban 
+Data Type: nvarchar
+Lenghth: 3
+Allow Nulls NOT Selected
+Defalt value 6
+
+/////////////
+Column name: UnBan
+Data Type: nvarchar
+Lenghth: 3
+Allow Nulls NOT Selected
+Defalt value 0
+
+/////////// Create table BanSec: ENTERPRISE MANAGER > Database > MuOnline > Tables > Select table: MEMB_STAT > Right Click > Design table
+Column name: BanSec
+Data Type: nvarchar
+Lenghth: 1
+Allow Nulls NOT Selected
+Defalt value 0
+
+
+
+
+
+
+
+
+
+
+
+
+/////////// Create JOB Ban / UnBan:
+
+ENTERPRISE MANAGER > MANAGEMENT > SQL Server Agent > jobs > Right click > New Job...:
+
+General > Name Ban 
+Schedules > New Schedule > Name: Ban > [Recurring] > Change...  > [Daily] > [Occurs every:] > [1 Minute(s)] > [No end date] > ok!
+
+Steps > New... > Step Name: Ban > Database: MuOnline > Command: paste code below:
+
+USE MuOnline
+UPDATE MEMB_INFO SET MEMB_INFO.Ban=  Ban-1 from MEMB_INFO join MEMB_STAT s on MEMB_INFO.memb___id = s.memb___id collate Latin1_general_CI_AS where s.Connectstat=1 AND Bloc_code=0; 
+UPDATE MEMB_INFO SET MEMB_INFO.bloc_code=2, ban=6, BanDays=5  from MEMB_INFO join MEMB_STAT s on MEMB_INFO.memb___id = s.memb___id collate Latin1_general_CI_AS where s.Connectstat=1 AND Ban < 1 AND BanSec=1;
+UPDATE MEMB_INFO SET MEMB_INFO.bloc_code=3, ban=6, BanDays=30 from MEMB_INFO join MEMB_STAT s on MEMB_INFO.memb___id = s.memb___id collate Latin1_general_CI_AS where s.Connectstat=1 AND Ban < 1 AND BanSec=0;
+UPDATE MEMB_INFO SET MEMB_INFO.bloc_code=4, ban=6, BanDays=20 from MEMB_INFO join MEMB_STAT s on MEMB_INFO.memb___id = s.memb___id collate Latin1_general_CI_AS WHERE s.IP in (SELECT IP FROM MEMB_STAT GROUP BY IP HAVING count(*) > 1) and s.connectstat in (SELECT connectstat FROM MEMB_STAT GROUP BY connectstat HAVING count(*) > 1) and connectstat =1;
+UPDATE MEMB_STAT SET BanSec=0 where connectstat=0;
+
+=============  Parse to test! 
+
+General > Name UnBan 
+Schedules > New Schedule > > Name: UnBan > [Recurring] > Change... > [Daily] > [Occurs once at:] > [00:00:00] > [No end date] > Ok!
+
+Steps > New... > Step Name: UnBan > Database: MuOnline > Command:  paste code below:
+
+USE MuOnline
+UPDATE MEMB_INFO SET MEMB_INFO.BanDays=  BanDays-1 where BanDays > 0;
+UPDATE MEMB_INFO SET bloc_code=0 where BanDays= 0 and (bloc_code=2 OR bloc_code=3 OR bloc_code=4);
+
+=============  Parse to test! 
+
+Select Ban > Step > Edit > advanced > On sucess action: Goto next step
+
+
+> Ok > Ok > Right click on BAN Job: Start JOB /  Be sure = SQL SERVER SERVICE MANAGER are Running.
+
+Details:
+
+Bloc_code= 2 
+-Player log in on server with dll, but, dll all threads are KILLED using PC HUnter or other cheat app... 
+-Or player just get out from server but stay connected with connectstat=1 (Mu Online Bug) 
+
+You Decide...
+
+Bloc_code= 3
+-Player have logged on server without dll autentication, in this case are an main bypass. 
+ 
+
+Bloc_code= 4 
+ATTENTION! System as are dont alow multiple player logged with the same IP. Becouse:  players may try to use an mxmain with dll autentication and anothe one simoutaniosly without it.
+If you think thats not a problem, just remove that line from the Ban Job, or just aply another kind of punishment.
+
+I give you the basic idea, fell free to make many improvements you want.
+
+
+
+
+
+
+
+
+
+
+
+
+
+///////////  Query codes, Just for monitoring status:
+
+
+SELECT memb___id, bloc_code, Ban, BanDays FROM MEMB_INFO
+SELECT memb___id, IP, BanSec, connectstat FROM MEMB_STAT
+
+UPDATE MEMB_INFO SET bloc_code=0, Ban=5, BanDays=0
+UPDATE MEMB_INFO SET bloc_code=0  WHERE bloc_code=4
+UPDATE MEMB_INFO SET bloc_code=0
+UPDATE MEMB_INFO SET BanDays=0
+
+UPDATE MEMB_INFO Set bloc_code=0 where memb___id ='codex'
+UPDATE MEMB_INFO Set BAN=0 where memb___id ='codex'

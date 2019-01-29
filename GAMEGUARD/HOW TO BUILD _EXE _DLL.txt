@@ -1,0 +1,294 @@
+ 
+
+
+
+
+
+
+
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+ How to build _Exe's XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+ 
+
+
+
+
+
+
+
+
+//1 _Exe's ///////////////////////////////////////////////////////////////
+// How to rename and make _EXE silently /////////////////////////////////
+
+To make program silently / invisible: 
+
+[StartUp.cpp] >> comment this lines 
+
+    // ShowWindow(hWnd, nCmdShow); // VISIBLE WINDOW
+       ShowWindow(hWnd, SW_HIDE);  //HIDE WINDOW 
+ 
+
+
+
+
+
+
+
+
+//2 _Exe's ////////////////////////////////////////////////////////////////////////
+// Dialog /////////////////////////////////////////////////////////////////////////
+
+To Rename Program Dialog box:
+
+Ctrl+f >> Find what: StartUp >> Look in: Entire Solution >> Click Find Next untill find this lines on [StrtUp.rc]
+
+.....................................................................................
+CAPTION "About StartUp"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    ICON            IDR_MAINFRAME,IDC_STATIC,14,14,21,20
+    LTEXT           "StartUp, Version 1.0",IDC_STATIC,42,14,114,8,SS_NOPREFIX
+    LTEXT           "Copyright (C) 2015",IDC_STATIC,42,26,114,8
+.....................................................................................
+ 
+
+
+
+
+
+
+
+
+//3 _Exe's /////////////////////////////////////////////////////////////////////////////////////////
+// WindowName / ClassName /////////////////////////////////////////////////////////////////////////
+
+To Rename Program WindowName / ClassName:
+
+Ctrl+f >> Find what: StartUp >> Look in: Entire Solution >> Click Find Next untill find this lines on [StrtUp.rc]
+
+.....................................................................................
+   IDC_STARTUP   "STARTUP"  << This one are ClassName
+   IDS_APP_TITLE "StartUp"  << This one are WindowName
+.....................................................................................
+ 
+
+
+
+
+
+
+
+
+//4 _Exe's //////////////////////////////////////////////////////////////
+// How to build pack ////////////////////////////////////////////////////
+
+
+
+ xxxxxxxxxxxxxxxxxxxxxx  To make a program to Start with Windows: xxxxxxxxxxxxxxxxxxxxxx
+
+
+- Rename Dialog and windows as as you can, In this case, i will use [SoundDriver] 
+- Read How to build _dll's tutorial below.  Build, rename and Hook [c.dll Buid option = 2] on .exe file, pack .dll inside .exe file using Molebox to make just on file. 
+- Rename program as you can,  In this case, i will use ["StartUp.exe"] as an exemple.  Put new file packed inside game folder
+- Rename program as you can, on [carrega.StartUp_Address_NewName] In this exemple: [SoundDriver.exe] Dont' change address!
+
+Configure names on START.cpp:
+
+carrega.StartUp_Original_Name       = "StartUp.exe"; //file that are inside game folder and will be copyed /renamed to Windows startup folder
+carrega.StartUp_Address_NewName     = "C:/Documents and Settings/All Users/Start Menu/Programs/Startup/SoundDriver.exe"; 
+
+
+
+ xxxxxxxxxxxxxxxxxxxxxx  To make GameGuard.exe: xxxxxxxxxxxxxxxxxxxxxx
+
+- Rename Dialog and windows as as you can, In this case, i will use [GameGuard]
+- Read How to build _dll's tutorial below.  Build, rename and Hook [GameGuard.dll Buid option = 1] on .exe file, pack .dll inside .exe file using Molebox to make just on file. Watch video tutorial!
+- Rename program as you can,  In this case, i will use ["GameGuard.exe"] as an exemple.  Put new file packed inside game folder
+- Rename program as you can, on [carrega.StartUp_Address_NewName] In this exemple: [SoundDriver.exe] Dont' change address!
+
+Configure name on START.cpp:
+
+carrega.GameGuard_Value             = "GameGuard.exe";
+
+CONFIGURE AND START CRC CONFERENCE FOR ALL FILES! 
+
+[IMPORTANT!] Look at: [CODEX ANTIHACK V5\CONTENTS\Codex V5 Demonstration pack] that is an exemple how your pack need to be.
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+ How to build _dll's XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+
+
+//1 _dll's ////////////////////////////////////////////////////////////////////////////////////////////////////
+// Get Main.exe WindoName / Classname /////////////////////////////////////////////////////////////////////////
+
+Codex.dll > START.cpp: carrega.MinimizerDLL = 1; Activate minimizer 
+
+-Build Codex.dll (f5) > Copy and past Codex.dll and [CODEX ANTIHACK V5\CODEX_V5 DLL\Debug\GameGuard] to your game client
+
+-Hook Codex.dll on your Main.exe, video tutorial on my channel, tools inside: [CODEX ANTIHACK V5\CONTENTS\Utilities\Dll hook\StudPE (portable) - dll hook]
+
+-Start your game and minimize (f9 - Shortcut to Minimizer dll)
+ 
+
+
+
+
+
+
+
+
+//2 _dll's ////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Configure Main.exe WindowName / Classname  on Codex.dll and GameGuard.dll //////////////////////////////////////
+
+-Use [CODEX ANTIHACK V5\CONTENTS\Utilities\Get WindowName and WindowClass tools] to get you game data and configure both dll files.  
+
+THIS IS VERY IMPORTANT!  Don't make mistakes!  GameGuard use this data to monitoring and close Main.exe on memory. 
+
+-Configure: Codex.dll > START.cpp: 
+
+           carrega.Nome_do_Main		       = "Main.exe";            // Main name extension
+	   carrega.MainWindowName              = "Mxmain";              // Utiliitários Handler.exe >> Main WindowName 
+	   carrega.MainClassName               = "ConsoleWindowClass";  // Utiliitários Handler.exe >> Main Classname
+
+-Configure: DLL_GameGuard.dll >> START.cpp (Exact the same as your Main.exe)
+
+           carrega.MainWindowName              = "Mxmain";             // Exact the same as Codex.dll       
+	   carrega.MainClassName               = "ConsoleWindowClass"; // Exact the same as Codex.dll      
+	   carrega.Nome_do_Main	    	       = "Main.exe";           // Exact the same as Codex.dll 
+
+
+-Rebuild Codex.dll (f5) > Copy and past Codex.dll and [CODEX ANTIHACK V5\CODEX_V5 DLL\Debug\GameGuard] to your game client
+
+Also, You can use this feature to check if is everything ok:  
+
+-Codex.dll START.cpp: carrega.Test_Main_Win_Class_PID        = 1; // On/Off - Check if Main values: classwindow, classname and PID are correct
+
+Also, if you wish, can config Launcher data too, but for now, are not necessary...  To configure Launcher:
+
+Codex.dll START.cpp: carrega.Test_Launcher_Win_Class_PID   =  1; // On/Off - Check if Launcher values: classwindow, classname and PID are correct 
+
+
+-Continue only if everything are are ok...
+ 
+
+
+
+
+
+
+
+
+//3 _dll's /////////////////////////////////////////////////////////////////////////////////
+// Start Detectors /////////////////////////////////////////////////////////////////////////
+
+xxxxxxxxxxxxxxxxxxxxxxxxxxx Configure: Codex.dll > START.cpp: xxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+-Turn detectors on:
+
+	carrega.GameGuard_Exe_Protection    = 1; // On/Off - This is an active GameGuard.exe protection that prevent kill or freeze anti-hack detectors.
+	carrega.Inject_dll_Protection       = 1; // On/Off - This is an Dll injection protection that prevent kill or freeze anti-hack detectors.
+
+-Rebuild Codex.dll (f5) > Copy and past Codex.dll and [CODEX ANTIHACK V5\CODEX_V5 DLL\Debug\GameGuard] to your game client
+
+
+
+
+
+xxxxxxxxxxxxxxxxxxxxxxxxxxx Configure: DLL_GameGuard.dll > on START.CPP: xxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+[IMPORTANT!] Chose Dll build features:
+
+=1; to build [GameGuard.dll] for GameGuard.exe
+or 
+=2; to build [c.dll] to put inside game folder for dll injector, and [c.dll] that will be hooked StartUp.exe for startup 
+
+         carrega.Dll_Build_Option            = 1; // [CHOICE!] Chose an option: 1= build Gameguard dll [Rename it: GameGuard.Dll], 2= build Inject dll = [Rename it: C.dll] 
+
+-Choose features you want to use:         
+         carrega.Show_Splash_Message         = 0; // [alwais OFF = 0]  1 = Show a splash message wen kill main, just for configuration puposes!	
+	 carrega.Shutdown_Computer           = 1; // [ATENTION! use at your own risk!] = Someone may not like this GameGuard.dll "feature"...  On/Off =  If GameGuard.dll can't kill Mxmain.exe after all, Guameguard.dll will shutdown computer.
+
+-Ruild DLL_GameGuard.dll (f5)
+
+-Rename > Debug/DLL_GameGuard.dll to GameGuard.dll (if you choose option =1;) or c.dll (if you choose option =2;). You can use Batch files to make it easier...
+
+-Copy and past: [GameGuard.dll] and [c.dll] That you build to your GameGuard folder!
+
+-Start game!  > try to kill / freeze your main... 
+
+
+-Continue only if everything are are ok...
+ 
+
+
+
+
+
+
+
+
+//4 _dll's //////////////////////////////////////////////////////////////////////////
+// Pack All /////////////////////////////////////////////////////////////////////////
+
+Use files Packer protect all your files: [CODEX ANTIHACK V5\CONTENTS\Utilities\MoleBoxPro (portable).exe]. 
+Create packs:
+
+First  pack: Main.exe + Codex.dll + c.dll.  This Will generate a new: [Main.exe.exe] Delete all old files: Main.exe, Codex.dll, c.dll and rename New [Main.exe.exe to Main.exe] 
+
+Second pack: GameGuard.exe + Gameguard.dll. This Will generate a new: [GameGuard.exe.exe] Delete all old files: GameGuard.exe, Gameguard.dll and rename New [GameGuard.exe.exe to GameGuard.exe] 
+
+
+CONFIGURE AND START CRC CONFERENCE FOR ALL FILES! 
+
+-GameGuard.exe
+-StartUp.exe
+and
+-c.dll (if you don't use molebox to pack this one inside Main.exe)
+ 
+Watch video turorial!
+
+
+
+
+
+
+
+
+//5 _dll's ////////////////////////////////////////////////////////////////////////////////////
+// Turn Anti-hack ON! /////////////////////////////////////////////////////////////////////////
+
+Start Codex.dll > START.cpp Turn ON all detectors you need, one by one...
+
+Important!  Rebuid codex.dll and test it everytime you start a new detector... Read documentation!
+
+
+
+===========================================================================================
+I think this one are the last Codex anti-hack version.  
+
+I love this project, i hope you enjoy it!  
+
+And also, sorry about my broken english... 
+
+.........................................
+https://www.youtube.com/user/vertexbrasil
+.........................................
+===========================================================================================
+
+  
