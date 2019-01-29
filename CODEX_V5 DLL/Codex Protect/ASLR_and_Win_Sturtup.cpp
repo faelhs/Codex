@@ -97,6 +97,7 @@ HKEY hk2;
 
 // Deny Admin message
 void DenyAdmin(){
+	return;
 	disable_Admin_main();	
 	if (carrega.Message_Warning_En == 1){
 	MessageBoxA(NULL,"Anti-Kill - Scan - Administrative privileges are not allowed for this application!\n\nRestart application as single user please!", carrega.Nome_das_Janelas, MB_SERVICE_NOTIFICATION | MB_ICONWARNING);	

@@ -1,0 +1,12 @@
+MoleBox Pro 2.6.4 for creating any portable Windows application:
+
+
+Built on a new technology, MoleBox Solution offers improved virtualization and reliable protection for native and .NET applications.
+
+MoleBox is a software virtualization and protection tool that allows delivering your application as a portable stand-alone secure EXE file which runs instantly with zero installation.
+
+MoleBox packs all application files into a single efficient executable file that works without extracting packed files to the hard drive and creating temporary files. MoleBox also applies a number of protection techniques to packed files, including anti-crack protection for EXE and dlls, resource protection, protection from modification for data files, and many more. 
+
+
+
+http://www.molebox.com/

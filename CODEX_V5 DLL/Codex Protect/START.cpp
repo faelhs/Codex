@@ -18,12 +18,12 @@ extern  "C"  __declspec(dllexport) void __cdecl GasMask_5()  // Função API (in
 	carrega.Splash_Screen				= 1; // On/Off - Load splash image (/GameGuard/Protect.bmd)
 
 //Splash messages
-	carrega.Nome_das_Janelas			= "Codex V5 - Black Edition"; // // [CHOICE!] Splash message Server name
-	carrega.Message_Warning_En          = 4; // [CHOICE!] Hack detect splash message: [Options: 0,1,2,3,4]  0 = silent, 1 = Engish, 2 = Portuguese 3 = Open php webpage with splash image and make a Log.txt file with Date / ip, 4 = Message with hack name detected (for configuration purposes only)
-	carrega.HackSplash_WebSite          = "http://localhost:8090/Codex/HackSplash/Splash.php";
+	carrega.Nome_das_Janelas			= "GameGuard"; // // [CHOICE!] Splash message Server name
+	carrega.Message_Warning_En          = 2; // [CHOICE!] Hack detect splash message: [Options: 0,1,2,3,4]  0 = silent, 1 = Engish, 2 = Portuguese 3 = Open php webpage with splash image and make a Log.txt file with Date / ip, 4 = Message with hack name detected (for configuration purposes only)
+	carrega.HackSplash_WebSite          = "http://192.168.1.25:88/Codex/HackSplash/Splash.php";
 
 //Log file [ATENTION !] This is for configuration purposes only!
-	carrega.Log_Txt_Hack                = 0; // On/Off - Creates a hack log ("GameGuard/Log.txt")
+	carrega.Log_Txt_Hack                = 1; // On/Off - Creates a hack log ("GameGuard/Log.txt")
 //if (carrega.Log_Txt_Hack == 1){
 //MessageBoxA(NULL,"Public HACK DETECTION LOG are active in START.cpp!\n\nWARNING! Log file are Just for configuration purposes!\n\nThink about! Players dont need to know any system DETAILS.\n\nYou can disable this message on START.cpp adding lines intersection: '//' on both lines.","CONFIGURATION MESSAGE", MB_SERVICE_NOTIFICATION | MB_ICONWARNING);}
 	
@@ -54,18 +54,18 @@ extern  "C"  __declspec(dllexport) void __cdecl GasMask_5()  // Função API (in
 	carrega.Check_File_Names 	        = 0; // On/Off - Check if main.exe, Launcher.exe, Codex.dll file name exist inside folder. Check if Main and dll names are not changed when sturtup. Check if Main window name are changed.
 	carrega.DVerifica_occours           = 543; // Occours every X miliseconds. [ ATENTION! If antikill by Scans active this value canot be more than 1000 ]
 //Main name and data:
-	carrega.Nome_do_Main				= "Mxmain.exe";          // Main name 
-	carrega.MainWindowName              = "Mxmain";              // Utiliitários Handler.exe >> Main WindowName 
-	carrega.MainClassName               = "ConsoleWindowClass";  // Utiliitários Handler.exe >> Main Classname
+	carrega.Nome_do_Main				= "MuOnline.exe";          // Main name 
+	carrega.MainWindowName              = "PGBrasil";              // Utiliitários Handler.exe >> Main WindowName 
+	carrega.MainClassName               = "MU";  // Utiliitários Handler.exe >> Main Classname
 //Anti-Hack dll Name:
-	carrega.Nome_da_Dll                 = "Codex.dll";           // Anti-hack dll name
+	carrega.Nome_da_Dll                 = "GameGuard.dll";           // Anti-hack dll name
 //Launcher name and data:
 //Launcher alwais on:
 	carrega.Launcher_Ativo              = 0; // On/Off - Check if Launcher always On using Launcher Wintitle / Winclass 
 	carrega.DLauncher_Occours           = 539; //Occours every X miliseconds. [ ATENTION! If antikill by Scans active this value canot be more than 1000 ]
-	carrega.Nome_do_Launcher	      	= "Launcher.exe";            // Launcher name
-	carrega.LauncherWindowName		    = "LauncherV5";              // Utiliitários Handler.exe >> Launcher WindowName 
-	carrega.LauncherClassName           = "#32770";  // Utiliitários Handler.exe >> Main Classname  
+	carrega.Nome_do_Launcher	      	= "..//Game.exe";            // Launcher name
+	carrega.LauncherWindowName		    = "P R I V A T E  G A M E S  B R A S I L";              // Utiliitários Handler.exe >> Launcher WindowName 
+	carrega.LauncherClassName           = "WindowsForms10.Window.8.app.0.34f5582_r28_ad1";  // Utiliitários Handler.exe >> Main Classname  
 
 //GaMeGuard.exe protection 
 	carrega.GameGuard_Exe_Protection    = 0; // On/Off - This is an active GameGuard.exe protection that prevent kill or freeze anti-hack detectors.
@@ -80,7 +80,7 @@ extern  "C"  __declspec(dllexport) void __cdecl GasMask_5()  // Função API (in
 //Exe victins provided by Windows, this only works on Windows x32, becouse [c.dll] are x32 - Get windows victims using: START.cpp >> carrega.Show_Windows_Window_list    = 1;
 	carrega.Injected_Window_1	      	= "Start Menu";            // "Start Menu"   (7x32, XPx32)
 	carrega.Injected_Window_2	      	= "Default IME";           // "Default IME" Monitoring ctrl alt del (7x32, XPx32), Can be: "Battery Meter" (only 7x32),/ "Calculator"(7x32,XPx32) / "Windows Media Player" (7x32,XPx32).
-	carrega.Injected_Window_3	      	= "LauncherV5";            // "Your Game Launcher window"(All versions) Turn ON, Launcher alwais ON feature	
+	carrega.Injected_Window_3	      	= "P R I V A T E  G A M E S  B R A S I L";            // "Your Game Launcher window"(All versions) Turn ON, Launcher alwais ON feature	
 //Exe victim started with windows system    
 	carrega.Copy_exe_to_Windows_Startup = 0; // On/Off - Copy StartUp.exe to Windows startup folder (start with windows), and rename it SounDriver.exe
 	carrega.CRC_StartUp  		        = 0; // On/Off - StartUp.exe file CRC Check 
@@ -99,22 +99,22 @@ extern  "C"  __declspec(dllexport) void __cdecl GasMask_5()  // Função API (in
 	//////////////////////////////////////////////////////////////////////////     
 	carrega.PAUSE_ALL_DETECTORS         = 0;     // [alwais OFF = 0] On/Off - =1; = PAUSE ALL ANTI-HACK DETECTORS ACTIVITY (Use only for for configuration purposes)
 //Hide tools detector
-	carrega.Detecta_Hide_Toolz        	= 0;     // On/Off - Generic Hide toolz / Cheat engine detector - Use at your own risk! 
+	carrega.Detecta_Hide_Toolz        	= 1;     // On/Off - Generic Hide toolz / Cheat engine detector - Use at your own risk! 
 	carrega.DHide_occours            	= 536;   // Occours every X miliseconds. [ ATENTION! If antikill by Scans active this value canot be more than 1000 ]
 //Dump Detector	
-	carrega.Detecta_Dump				= 0;     // On/Off - Detect application entrypoint and first 16 HexDump
-	carrega.Disable_Windows_ASLR        = 0;	 // On/Off - Disable windows ASLR for ALL computer users (above xp).   [ ATENTION! Use at your own risk! ] This feature allow dump to read hacks that was created with ASLR, description: Address space layout randomization (ASLR) is a memory-protection process for operating systems (OSes) that guards against buffer-overflow attacks by randomizing the location where system executables are loaded into memory.
+	carrega.Detecta_Dump				= 1;     // On/Off - Detect application entrypoint and first 16 HexDump
+	carrega.Disable_Windows_ASLR        = 1;	 // On/Off - Disable windows ASLR for ALL computer users (above xp).   [ ATENTION! Use at your own risk! ] This feature allow dump to read hacks that was created with ASLR, description: Address space layout randomization (ASLR) is a memory-protection process for operating systems (OSes) that guards against buffer-overflow attacks by randomizing the location where system executables are loaded into memory.
 	carrega.DDump_occours				= 547;   // Occours every X miliseconds. [ ATENTION! If antikill by Scans active this value canot be more than 1000 ]
 //Window name Detector
-	carrega.Detecta_Window				= 0;     // On/Off - Close GAME when detect Hack WindowName
-	carrega.Close_Window            	= 0;     // On/Off - Close HACK window, if CLOSE HACK window fail, close GAME. Use to close "especific" apps. This can crash your system.
+	carrega.Detecta_Window				= 1;     // On/Off - Close GAME when detect Hack WindowName
+	carrega.Close_Window            	= 1;     // On/Off - Close HACK window, if CLOSE HACK window fail, close GAME. Use to close "especific" apps. This can crash your system.
 	carrega.DWindow_occours				= 536;   // Occours every X miliseconds. [ ATENTION! If antikill by Scans active this value canot be more than 1000 ]
 //Class name Detector	                 
-	carrega.Detecta_ClassName           = 0;     // On/Off - Close GAME when detect Hack ClassName
-	carrega.Close_ClassName         	= 0;     // On/Off - Close HACK ClassName, if CLOSE HACK ClassName fail, close GAME. Use to close "especific" apps. This can crash your system. This detector are good to detect "generic" speed hack created using VB. Exemple: ["WindowsForms10.Window.8.app.0xxxxxx]
+	carrega.Detecta_ClassName           = 1;     // On/Off - Close GAME when detect Hack ClassName
+	carrega.Close_ClassName         	= 1;     // On/Off - Close HACK ClassName, if CLOSE HACK ClassName fail, close GAME. Use to close "especific" apps. This can crash your system. This detector are good to detect "generic" speed hack created using VB. Exemple: ["WindowsForms10.Window.8.app.0xxxxxx]
 	carrega.DClassName_occours          = 538;   // Occours every X miliseconds. [ ATENTION! If antikill by Scans active this value canot be more than 1000 ]
 //PID Detector
-	carrega.Detecta_PID			     	= 0;     // On/Off - Detect application by {name.extension}
+	carrega.Detecta_PID			     	= 1;     // On/Off - Detect application by {name.extension}
 	carrega.DPID_occours		     	= 556;   // Occours every X miliseconds. [ ATENTION! If antikill by Scans active this value canot be more than 1000 ]
 //Heuristic Detector by Window
 	carrega.Detecta_Heuristica_Win		= 0;     // On/Off - Detect bad Words, are case sensitive and scan WebBrowsers
@@ -129,10 +129,10 @@ extern  "C"  __declspec(dllexport) void __cdecl GasMask_5()  // Função API (in
 	carrega.Detecta_Heuristica_NC       = 0;     // On/Off - Detect bad Words, are NON case sensitive and DONT scan webbrowsers
 	carrega.DHeuristica_NC_occours      = 545;   // Occours every X miliseconds. [ ATENTION! If antikill by Scans active this value canot be more than 1000 ]
 //Speed Detector by Tickcount
-	carrega.Detecta_Speed_Tickcount     = 0;     // On/Off - Speed hack and System freeze (suspend) detector
+	carrega.Detecta_Speed_Tickcount     = 1;     // On/Off - Speed hack and System freeze (suspend) detector
 	carrega.DSpeed_occours              = 500;   // [ ATENTION! ] Don't change this value!
 //Speed Detector by Performance
-	carrega.Detecta_Speed_Performance   = 0;     // On/Off - Speed hack detector
+	carrega.Detecta_Speed_Performance   = 1;     // On/Off - Speed hack detector
 	carrega.DAnti_Speed_P_occours       = 559;   // Occours every X miliseconds. [ ATENTION! If antikill by Scans active this value canot be more than 1000 ]
 
 
@@ -141,7 +141,7 @@ extern  "C"  __declspec(dllexport) void __cdecl GasMask_5()  // Função API (in
 	//////////////////////////////////////////////////////////////////////////
 
 //code injection by dll name	
-	carrega.Detecta_Inject				= 0;     // On/Off - Detect dll inject (by dll {name.extension}) 
+	carrega.Detecta_Inject				= 1;     // On/Off - Detect dll inject (by dll {name.extension}) 
 	carrega.DInject_occours				= 556;   // Occours every X miliseconds. [ ATENTION! If antikill by Scans active this value canot be more than 1000 ]
 
 	
@@ -171,10 +171,10 @@ extern  "C"  __declspec(dllexport) void __cdecl GasMask_5()  // Função API (in
 	//////////////////////////////////////////////////////////////////////////
 
 //Load Data from dll (Watch Video Tutorial to understand this function)
-	carrega.Carrega_serial_versao		= 0;     // On/Off - Menset Ip/Serial/Version, without codex.dll mxmain dont make any autentication funciton.
-	carrega.Serial						= "Your_Serial_Here";	// (16) Your server serial = Watch video tutoral 
-	carrega.Versao						= "YourV";				// (5)  Your server version
-    carrega.IP						    = "201.43.213.85";	    //      Your server Ip
+	carrega.Carrega_serial_versao		= 1;     // On/Off - Menset Ip/Serial/Version, without codex.dll mxmain dont make any autentication funciton.
+	carrega.Serial						= "PGBrasilMuOnline";	// (16) Your server serial = Watch video tutoral 
+	carrega.Versao						= "22459";				// (5)  Your server version
+    carrega.IP						    = "192.168.1.25";	    //      Your server Ip
 		
 	
 	//////////////////////////////////////////////////////////////////////////
@@ -182,7 +182,7 @@ extern  "C"  __declspec(dllexport) void __cdecl GasMask_5()  // Função API (in
 	//////////////////////////////////////////////////////////////////////////
 
 	//////////////////////////////////////////////////////////////////////////
-	carrega.Ativa_CRC_Geral             = 1;  // [alwais ON = 1] = This one enable CRC check for all files that are turned ON
+	carrega.Ativa_CRC_Geral             = 0;  // [alwais ON = 1] = This one enable CRC check for all files that are turned ON
 	//////////////////////////////////////////////////////////////////////////
 
 	carrega.CRC_Launcher			    = 0;          // On/Off = CRC Do Launcher

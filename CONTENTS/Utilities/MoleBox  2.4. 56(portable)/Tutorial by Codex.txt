@@ -1,0 +1,16 @@
+INSTALL LICENCE
+
+>pack > please select a package output file > clear []Slice executable > Select imput file > Select Output file name > ok!
+
+Add files > [Select dll's], or just Drag and drop [dll's] inside: File path on the local disk 
+
+> pack...
+
+Delete orginal files
+
+Pack 1 = Main.exe + Codex.dll + c.dll
+Pack 2 = GameGuard.exe + GameGuard.dll
+Pack 3 = Startup.exe (SoundDriver.exe) + c.dll = for windows startup folder
+pack 4 = (alternative) Launcher + c.dll
+
+[Warning!]  Molebox packer licence will rename files company to: [Katherina Walensky] Also, this packer have a lot of bugs... Fell free to use another ones, maybe Themida.

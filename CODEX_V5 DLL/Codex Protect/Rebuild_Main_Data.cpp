@@ -3,10 +3,10 @@
 
 void RebuildData()
 {   
-	DWORD* Data = (DWORD*)(0x00693FF1); // Get Addres with HxD (virtual Memory)
+	/*DWORD* Data = (DWORD*)(0x00693FF1); // Get Addres with HxD (virtual Memory)
 	memset(&Data[0],0x00,6);            // Digits amount = ,x);
 	memcpy(&Data[0],"Player",6);        // Digits amount = ,x);
-
+*/
 	//For extra memsets:
 /*  DWORD* Data1 = (DWORD*)(0x006903A8); 
 	memset(&Data1[0],0x00,4);           
