@@ -19,7 +19,7 @@ extern  "C"  __declspec(dllexport) void __cdecl GasMask_5()  // Função API (in
 
 //Splash messages
 	carrega.Nome_das_Janelas			= "GameGuard"; // // [CHOICE!] Splash message Server name
-	carrega.Message_Warning_En          = 2; // [CHOICE!] Hack detect splash message: [Options: 0,1,2,3,4]  0 = silent, 1 = Engish, 2 = Portuguese 3 = Open php webpage with splash image and make a Log.txt file with Date / ip, 4 = Message with hack name detected (for configuration purposes only)
+	carrega.Message_Warning_En          = 0; // [CHOICE!] Hack detect splash message: [Options: 0,1,2,3,4]  0 = silent, 1 = Engish, 2 = Portuguese 3 = Open php webpage with splash image and make a Log.txt file with Date / ip, 4 = Message with hack name detected (for configuration purposes only)
 	carrega.HackSplash_WebSite          = "http://192.168.1.25:88/Codex/HackSplash/Splash.php";
 
 //Log file [ATENTION !] This is for configuration purposes only!
@@ -38,9 +38,9 @@ extern  "C"  __declspec(dllexport) void __cdecl GasMask_5()  // Função API (in
 //Hardware ban
 	carrega.Hardware_Ban                = 0;             // Get Mac Addrees, PC Name and User name game id (from laucher) and create a file to FTP upload, read banlist every 5 minutes
 	carrega.DHard_occours            	= 600000;        // 600000, Occours every 10 minutes
-	carrega.IP_Server_and_Hard 			= "10.0.1.40";   // This IP Need be like: "192.168.1.1" or "adress.sytes.net" without [www, http:// or [port], This IP are used by: FTP Up/Down and server Ban post autenticatition
-	carrega.FTP_User       			    = "codex";       // FTP Server User
-	carrega.FTP_Pass       			    = "1234";        // FTP Server Password
+	carrega.IP_Server_and_Hard 			= "muonline.pgbrasil.net";   // This IP Need be like: "192.168.1.1" or "adress.sytes.net" without [www, http:// or [port], This IP are used by: FTP Up/Down and server Ban post autenticatition
+	carrega.FTP_User       			    = "gameguard";       // FTP Server User
+	carrega.FTP_Pass       			    = "G@M3gu4rd";        // FTP Server Password
 //Log file upload
     carrega.Hack_Log_Upload             = 0; // On/Off - Creates a Hide hacklog file and upload it to server (inside Hardware Ban folder, are named with computer user name), that uses FTP, when file are uploaded, computer file are deleted.
 	carrega.Log_File_Size_To_upload     = 10000; // 10000 = more or less 100 hack detections, only will upload if file are bigger than that.
