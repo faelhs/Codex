@@ -20,7 +20,7 @@ extern  "C"  __declspec(dllexport) void __cdecl GasMask_5()  // Função API (in
 //Splash messages
 	carrega.Nome_das_Janelas			= "GameGuard"; // // [CHOICE!] Splash message Server name
 	carrega.Message_Warning_En          = 0; // [CHOICE!] Hack detect splash message: [Options: 0,1,2,3,4]  0 = silent, 1 = Engish, 2 = Portuguese 3 = Open php webpage with splash image and make a Log.txt file with Date / ip, 4 = Message with hack name detected (for configuration purposes only)
-	carrega.HackSplash_WebSite          = "http://192.168.1.25:88/Codex/HackSplash/Splash.php";
+	carrega.HackSplash_WebSite          = "http://muonline.pgbrasil.net/Codex/HackSplash/Splash.php";
 
 //Log file [ATENTION !] This is for configuration purposes only!
 	carrega.Log_Txt_Hack                = 1; // On/Off - Creates a hack log ("GameGuard/Log.txt")

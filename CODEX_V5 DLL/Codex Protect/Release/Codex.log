@@ -1,4 +1,4 @@
-﻿Build started 30/01/2019 08:41:03.
+﻿Build started 11/02/2019 17:41:20.
      1>Project "C:\Users\Rafael\MuDraconick\gameguard\CODEX_V5 DLL\Codex Protect\Codex.vcxproj" on node 2 (build target(s)).
      1>InitializeBuildStatus:
          Creating "Release\GameGuard.unsuccessfulbuild" because "AlwaysCreate" was specified.
@@ -52,4 +52,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:13.84
+Time Elapsed 00:00:07.24
