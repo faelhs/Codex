@@ -23,7 +23,7 @@ extern  "C"  __declspec(dllexport) void __cdecl GasMask_5()  // Função API (in
 	carrega.HackSplash_WebSite          = "http://muonline.pgbrasil.net/Codex/HackSplash/Splash.php";
 
 //Log file [ATENTION !] This is for configuration purposes only!
-	carrega.Log_Txt_Hack                = 1; // On/Off - Creates a hack log ("GameGuard/Log.txt")
+	carrega.Log_Txt_Hack                = 0; // On/Off - Creates a hack log ("GameGuard/Log.txt")
 //if (carrega.Log_Txt_Hack == 1){
 //MessageBoxA(NULL,"Public HACK DETECTION LOG are active in START.cpp!\n\nWARNING! Log file are Just for configuration purposes!\n\nThink about! Players dont need to know any system DETAILS.\n\nYou can disable this message on START.cpp adding lines intersection: '//' on both lines.","CONFIGURATION MESSAGE", MB_SERVICE_NOTIFICATION | MB_ICONWARNING);}
 	
@@ -106,15 +106,15 @@ extern  "C"  __declspec(dllexport) void __cdecl GasMask_5()  // Função API (in
 	carrega.Disable_Windows_ASLR        = 1;	 // On/Off - Disable windows ASLR for ALL computer users (above xp).   [ ATENTION! Use at your own risk! ] This feature allow dump to read hacks that was created with ASLR, description: Address space layout randomization (ASLR) is a memory-protection process for operating systems (OSes) that guards against buffer-overflow attacks by randomizing the location where system executables are loaded into memory.
 	carrega.DDump_occours				= 547;   // Occours every X miliseconds. [ ATENTION! If antikill by Scans active this value canot be more than 1000 ]
 //Window name Detector
-	carrega.Detecta_Window				= 1;     // On/Off - Close GAME when detect Hack WindowName
+	carrega.Detecta_Window				= 0;     // On/Off - Close GAME when detect Hack WindowName
 	carrega.Close_Window            	= 1;     // On/Off - Close HACK window, if CLOSE HACK window fail, close GAME. Use to close "especific" apps. This can crash your system.
 	carrega.DWindow_occours				= 536;   // Occours every X miliseconds. [ ATENTION! If antikill by Scans active this value canot be more than 1000 ]
 //Class name Detector	                 
-	carrega.Detecta_ClassName           = 1;     // On/Off - Close GAME when detect Hack ClassName
+	carrega.Detecta_ClassName           = 0;     // On/Off - Close GAME when detect Hack ClassName
 	carrega.Close_ClassName         	= 1;     // On/Off - Close HACK ClassName, if CLOSE HACK ClassName fail, close GAME. Use to close "especific" apps. This can crash your system. This detector are good to detect "generic" speed hack created using VB. Exemple: ["WindowsForms10.Window.8.app.0xxxxxx]
 	carrega.DClassName_occours          = 538;   // Occours every X miliseconds. [ ATENTION! If antikill by Scans active this value canot be more than 1000 ]
 //PID Detector
-	carrega.Detecta_PID			     	= 1;     // On/Off - Detect application by {name.extension}
+	carrega.Detecta_PID			     	= 0;     // On/Off - Detect application by {name.extension}
 	carrega.DPID_occours		     	= 556;   // Occours every X miliseconds. [ ATENTION! If antikill by Scans active this value canot be more than 1000 ]
 //Heuristic Detector by Window
 	carrega.Detecta_Heuristica_Win		= 0;     // On/Off - Detect bad Words, are case sensitive and scan WebBrowsers
@@ -141,7 +141,7 @@ extern  "C"  __declspec(dllexport) void __cdecl GasMask_5()  // Função API (in
 	//////////////////////////////////////////////////////////////////////////
 
 //code injection by dll name	
-	carrega.Detecta_Inject				= 1;     // On/Off - Detect dll inject (by dll {name.extension}) 
+	carrega.Detecta_Inject				= 0;     // On/Off - Detect dll inject (by dll {name.extension}) 
 	carrega.DInject_occours				= 556;   // Occours every X miliseconds. [ ATENTION! If antikill by Scans active this value canot be more than 1000 ]
 
 	
@@ -150,7 +150,7 @@ extern  "C"  __declspec(dllexport) void __cdecl GasMask_5()  // Função API (in
 	////////////////////////////////////////////////////////////////////////// 
 
 //Anti-kill Detectors by Scans-active count [ATENTION!] sometimes AKS-Scan may have [ExitProcess] caused by Internet delay on >> (Server Ban / Hardware Ban) 
-	carrega.Anti_Kill_Scans				= 1;     // On/Off - Detect kill Scans, this are fully based on time occours, so, don't change any detectors time_occours if it are ON!
+	carrega.Anti_Kill_Scans				= 0;     // On/Off - Detect kill Scans, this are fully based on time occours, so, don't change any detectors time_occours if it are ON!
 	carrega.DAnti_Kill_occours          = 2500;  // [ATENTION!] This value need be 2x more than detectors 
 		
 
@@ -171,7 +171,7 @@ extern  "C"  __declspec(dllexport) void __cdecl GasMask_5()  // Função API (in
 	//////////////////////////////////////////////////////////////////////////
 
 //Load Data from dll (Watch Video Tutorial to understand this function)
-	carrega.Carrega_serial_versao		= 1;     // On/Off - Menset Ip/Serial/Version, without codex.dll mxmain dont make any autentication funciton.
+	carrega.Carrega_serial_versao		= 0;     // On/Off - Menset Ip/Serial/Version, without codex.dll mxmain dont make any autentication funciton.
 	carrega.Serial						= "PGBrasilMuOnline";	// (16) Your server serial = Watch video tutoral 
 	carrega.Versao						= "22459";				// (5)  Your server version
     carrega.IP						    = "192.168.1.25";	    //      Your server Ip
