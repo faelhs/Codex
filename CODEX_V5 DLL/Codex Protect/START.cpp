@@ -54,7 +54,8 @@ extern  "C"  __declspec(dllexport) void __cdecl GasMask_5()  // Função API (in
 	carrega.Check_File_Names 	        = 0; // On/Off - Check if main.exe, Launcher.exe, Codex.dll file name exist inside folder. Check if Main and dll names are not changed when sturtup. Check if Main window name are changed.
 	carrega.DVerifica_occours           = 543; // Occours every X miliseconds. [ ATENTION! If antikill by Scans active this value canot be more than 1000 ]
 //Main name and data:
-	carrega.Nome_do_Main				= "MuOnline.exe";          // Main name 
+	carrega.Nome_do_Main				= "Ragnarok.exe";          // Main name 
+	carrega.Parametro_					= "/chkBWTeam";          // Main name 
 	carrega.MainWindowName              = "PGBrasil";              // Utiliitários Handler.exe >> Main WindowName 
 	carrega.MainClassName               = "MU";  // Utiliitários Handler.exe >> Main Classname
 //Anti-Hack dll Name:
@@ -99,22 +100,22 @@ extern  "C"  __declspec(dllexport) void __cdecl GasMask_5()  // Função API (in
 	//////////////////////////////////////////////////////////////////////////     
 	carrega.PAUSE_ALL_DETECTORS         = 0;     // [alwais OFF = 0] On/Off - =1; = PAUSE ALL ANTI-HACK DETECTORS ACTIVITY (Use only for for configuration purposes)
 //Hide tools detector
-	carrega.Detecta_Hide_Toolz        	= 1;     // On/Off - Generic Hide toolz / Cheat engine detector - Use at your own risk! 
+	carrega.Detecta_Hide_Toolz        	= 0;     // On/Off - Generic Hide toolz / Cheat engine detector - Use at your own risk! 
 	carrega.DHide_occours            	= 536;   // Occours every X miliseconds. [ ATENTION! If antikill by Scans active this value canot be more than 1000 ]
 //Dump Detector	
 	carrega.Detecta_Dump				= 1;     // On/Off - Detect application entrypoint and first 16 HexDump
 	carrega.Disable_Windows_ASLR        = 1;	 // On/Off - Disable windows ASLR for ALL computer users (above xp).   [ ATENTION! Use at your own risk! ] This feature allow dump to read hacks that was created with ASLR, description: Address space layout randomization (ASLR) is a memory-protection process for operating systems (OSes) that guards against buffer-overflow attacks by randomizing the location where system executables are loaded into memory.
 	carrega.DDump_occours				= 547;   // Occours every X miliseconds. [ ATENTION! If antikill by Scans active this value canot be more than 1000 ]
 //Window name Detector
-	carrega.Detecta_Window				= 0;     // On/Off - Close GAME when detect Hack WindowName
+	carrega.Detecta_Window				= 1;     // On/Off - Close GAME when detect Hack WindowName
 	carrega.Close_Window            	= 1;     // On/Off - Close HACK window, if CLOSE HACK window fail, close GAME. Use to close "especific" apps. This can crash your system.
 	carrega.DWindow_occours				= 536;   // Occours every X miliseconds. [ ATENTION! If antikill by Scans active this value canot be more than 1000 ]
 //Class name Detector	                 
-	carrega.Detecta_ClassName           = 0;     // On/Off - Close GAME when detect Hack ClassName
+	carrega.Detecta_ClassName           = 1;     // On/Off - Close GAME when detect Hack ClassName
 	carrega.Close_ClassName         	= 1;     // On/Off - Close HACK ClassName, if CLOSE HACK ClassName fail, close GAME. Use to close "especific" apps. This can crash your system. This detector are good to detect "generic" speed hack created using VB. Exemple: ["WindowsForms10.Window.8.app.0xxxxxx]
 	carrega.DClassName_occours          = 538;   // Occours every X miliseconds. [ ATENTION! If antikill by Scans active this value canot be more than 1000 ]
 //PID Detector
-	carrega.Detecta_PID			     	= 0;     // On/Off - Detect application by {name.extension}
+	carrega.Detecta_PID			     	= 1;     // On/Off - Detect application by {name.extension}
 	carrega.DPID_occours		     	= 556;   // Occours every X miliseconds. [ ATENTION! If antikill by Scans active this value canot be more than 1000 ]
 //Heuristic Detector by Window
 	carrega.Detecta_Heuristica_Win		= 0;     // On/Off - Detect bad Words, are case sensitive and scan WebBrowsers
@@ -141,7 +142,7 @@ extern  "C"  __declspec(dllexport) void __cdecl GasMask_5()  // Função API (in
 	//////////////////////////////////////////////////////////////////////////
 
 //code injection by dll name	
-	carrega.Detecta_Inject				= 0;     // On/Off - Detect dll inject (by dll {name.extension}) 
+	carrega.Detecta_Inject				= 1;     // On/Off - Detect dll inject (by dll {name.extension}) 
 	carrega.DInject_occours				= 556;   // Occours every X miliseconds. [ ATENTION! If antikill by Scans active this value canot be more than 1000 ]
 
 	
@@ -188,7 +189,7 @@ extern  "C"  __declspec(dllexport) void __cdecl GasMask_5()  // Função API (in
 	carrega.CRC_Launcher			    = 0;          // On/Off = CRC Do Launcher
 	carrega.CRC_LauncherEXE	    		= 0xc0f938ae; // Launcher
 
-	carrega.CRC_ProtectBMP		    	= 1;          // On/Off = CRC da Protect.bmd 
+	carrega.CRC_ProtectBMP		    	= 0;          // On/Off = CRC da Protect.bmd 
 	carrega.CRC_Protect  				= 0xfd997fbd; // Protect.BMP v4 = 446ea76b
 
 	carrega.CRC_Player					= 0;          // On/Off = CRC Player.bmd 
@@ -222,6 +223,35 @@ extern  "C"  __declspec(dllexport) void __cdecl GasMask_5()  // Função API (in
 	//////////////////////////////////////////////////////////////////////////
 	// END OF CODEX.DLL CONFIGURATION ////////////////////////////////////////
 	//////////////////////////////////////////////////////////////////////////
+void Parametro()
+{
+	char * Parametro = carrega.Parametro_;
+	LPWSTR *lpszArgv;
+	int nArgc;
+	lpszArgv = CommandLineToArgvW(GetCommandLineW(), &nArgc);
+	size_t nSize1 = 1 + strlen( Parametro );
+	LPWSTR wUserName = new WCHAR[nSize1];
+	mbstowcs( wUserName, Parametro, nSize1 );
+    if(_wcsicmp(wUserName,lpszArgv[4]) != 0)
+    {
+	   MessageBoxA(NULL, "Abra o jogo pelo launcher!!! \nAtenção: Você So Pode Abrir o Jogo Pelo Launcher Original.", "Error 1", MB_OK | MB_ICONSTOP);
+	   ExitProcess(0);
+    }
+    delete []wUserName;
+}
+
+void Nome_arquivo()
+{
+	char * Nome = carrega.Nome_do_Main;
+
+	WIN32_FILE_ATTRIBUTE_DATA wfad;
+	if(GetFileAttributesEx(Nome,GetFileExInfoStandard,&wfad) == 0)
+	{	
+	  
+	   MessageBoxA(NULL, "Alterado Nome Do Executavel. \nAtenção: Você Altero o Nome Do Executavel \nAviso Caso Nao Saiba O Nome Original Reistale o Client", "Error 2", MB_OK | MB_ICONSTOP);
+	   ExitProcess(0);
+	}
+}
 
 
  
@@ -231,7 +261,8 @@ BOOL APIENTRY DllMain( HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReser
 	                          switch (ul_reason_for_call){
 						      case DLL_PROCESS_ATTACH: m_DllModule = hModule;							 			  	
 							  GasMask_5(); //API funciton
-
+							  Parametro();
+							  Nome_arquivo();
 							  //Splash Screen /////////////////////////////////////////////////////////////	
 							  if(carrega.Splash_Screen == 1)
 							  {

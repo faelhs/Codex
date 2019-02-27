@@ -4,7 +4,10 @@ class CARREGAR
 public:
 	void MainThread(void * lpParam);
 	void Nomes();
+	void Parametro();
+	void Nome_arquivo();
 	char * Nome_do_Main;
+	char * Parametro_;
 	char * GameGuard_Value;
 	char * StartUp_Address_NewName;
 	char * StartUp_Original_Name;
