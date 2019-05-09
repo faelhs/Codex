@@ -1,12 +1,47 @@
-﻿Build started 27/02/2019 11:52:14.
-     1>Project "C:\Users\Rafael\MuDraconick\gameguard\CODEX_V5 DLL\Codex Protect\Codex.vcxproj" on node 2 (build target(s)).
-     1>InitializeBuildStatus:
+﻿Build started 26/03/2019 10:09:22.
+     1>Project "C:\Users\PC\Documents\gameguard\CODEX_V5 DLL\Codex Protect\Codex.vcxproj" on node 2 (rebuild target(s)).
+     1>_PrepareForClean:
+         Deleting file "Release\GameGuard.lastbuildstate".
+       InitializeBuildStatus:
          Creating "Release\GameGuard.unsuccessfulbuild" because "AlwaysCreate" was specified.
        ClCompile:
-         c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /Zi /nologo /W3 /WX- /O2 /Oi /Oy- /GL /D _WINDLL /D _MBCS /Gm- /EHsc /MT /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt START.cpp
+         C:\Program Files\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /Zi /nologo /W3 /WX- /O2 /Oi /Oy- /GL /D _WINDLL /D _MBCS /Gm- /EHsc /MT /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt Detecta_Heuristica_Class.cpp Detecta_Heuristica_Win.cpp Detecta_Speed_Performance.cpp ASLR_and_Win_Sturtup.cpp GameGuard_Injector.cpp GameGuard_Protection.cpp Hack_Log_Upload.cpp Close_Window.cpp Limit_Single_Instance.cpp Rebuild_Main_Data.cpp Server_Ban.cpp Detecta_Heuristica.cpp Detecta_Speed_Tickcount.cpp Hardware_Ban.cpp Launcher_ativo.cpp Detecta_ClassName.cpp START.cpp Detecta_Names.cpp CRC.cpp CRC_Arquivos.cpp Detecta_Heuristica_NC.cpp Detecta_Dump.cpp Detecta_Window.cpp Serial_Versao.cpp Splash.cpp splash2.cpp Detecta_Inject.cpp Detecta_ProcessID.cpp Detecta_Hide.cpp Close_ClassName.cpp Detecta_AntiKill_Scans.cpp Detecta_Virtual_Memory.cpp TESTES.cpp
+         Detecta_Heuristica_Class.cpp
+         Detecta_Heuristica_Win.cpp
+         Detecta_Speed_Performance.cpp
+         ASLR_and_Win_Sturtup.cpp
+         GameGuard_Injector.cpp
+         GameGuard_Protection.cpp
+         Hack_Log_Upload.cpp
+         Close_Window.cpp
+         Limit_Single_Instance.cpp
+         Rebuild_Main_Data.cpp
+         Server_Ban.cpp
+         Detecta_Heuristica.cpp
+         Detecta_Speed_Tickcount.cpp
+         Hardware_Ban.cpp
+         Launcher_ativo.cpp
+         Detecta_ClassName.cpp
          START.cpp
+         Detecta_Names.cpp
+         CRC.cpp
+         CRC_Arquivos.cpp
+         Compiling...
+         Detecta_Heuristica_NC.cpp
+         Detecta_Dump.cpp
+         Detecta_Window.cpp
+         Serial_Versao.cpp
+         Splash.cpp
+         splash2.cpp
+         Detecta_Inject.cpp
+         Detecta_ProcessID.cpp
+         Detecta_Hide.cpp
+         Close_ClassName.cpp
+         Detecta_AntiKill_Scans.cpp
+         Detecta_Virtual_Memory.cpp
+         TESTES.cpp
        Link:
-         c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Rafael\MuDraconick\gameguard\CODEX_V5 DLL\Release\GameGuard.dll" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Release\GameGuard.dll.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"C:\Users\Rafael\MuDraconick\gameguard\CODEX_V5 DLL\Release\GameGuard.pdb" /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Rafael\MuDraconick\gameguard\CODEX_V5 DLL\Release\GameGuard.lib" /MACHINE:X86 /DLL Release\Detecta_Heuristica_Class.obj
+         C:\Program Files\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\PC\Documents\gameguard\CODEX_V5 DLL\Release\GameGuard.dll" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Release\GameGuard.dll.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"C:\Users\PC\Documents\gameguard\CODEX_V5 DLL\Release\GameGuard.pdb" /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\PC\Documents\gameguard\CODEX_V5 DLL\Release\GameGuard.lib" /MACHINE:X86 /DLL Release\Detecta_Heuristica_Class.obj
          Release\Detecta_Heuristica_Win.obj
          Release\Detecta_Speed_Performance.obj
          Release\ASLR_and_Win_Sturtup.obj
@@ -39,17 +74,17 @@
          Release\Detecta_AntiKill_Scans.obj
          Release\Detecta_Virtual_Memory.obj
          Release\TESTES.obj
-            Creating library C:\Users\Rafael\MuDraconick\gameguard\CODEX_V5 DLL\Release\GameGuard.lib and object C:\Users\Rafael\MuDraconick\gameguard\CODEX_V5 DLL\Release\GameGuard.exp
+            Creating library C:\Users\PC\Documents\gameguard\CODEX_V5 DLL\Release\GameGuard.lib and object C:\Users\PC\Documents\gameguard\CODEX_V5 DLL\Release\GameGuard.exp
          Generating code
          Finished generating code
-         Codex.vcxproj -> C:\Users\Rafael\MuDraconick\gameguard\CODEX_V5 DLL\Release\GameGuard.dll
+         Codex.vcxproj -> C:\Users\PC\Documents\gameguard\CODEX_V5 DLL\Release\GameGuard.dll
        Manifest:
-         c:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /outputresource:"C:\Users\Rafael\MuDraconick\gameguard\CODEX_V5 DLL\Release\GameGuard.dll;#2" /manifest Release\GameGuard.dll.intermediate.manifest
+         C:\Program Files\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /outputresource:"C:\Users\PC\Documents\gameguard\CODEX_V5 DLL\Release\GameGuard.dll;#2" /manifest Release\GameGuard.dll.intermediate.manifest
        FinalizeBuildStatus:
          Deleting file "Release\GameGuard.unsuccessfulbuild".
          Touching "Release\GameGuard.lastbuildstate".
-     1>Done Building Project "C:\Users\Rafael\MuDraconick\gameguard\CODEX_V5 DLL\Codex Protect\Codex.vcxproj" (build target(s)).
+     1>Done Building Project "C:\Users\PC\Documents\gameguard\CODEX_V5 DLL\Codex Protect\Codex.vcxproj" (rebuild target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:04.86
+Time Elapsed 00:01:02.87

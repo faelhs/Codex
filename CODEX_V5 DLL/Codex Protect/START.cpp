@@ -54,7 +54,7 @@ extern  "C"  __declspec(dllexport) void __cdecl GasMask_5()  // Função API (in
 	carrega.Check_File_Names 	        = 0; // On/Off - Check if main.exe, Launcher.exe, Codex.dll file name exist inside folder. Check if Main and dll names are not changed when sturtup. Check if Main window name are changed.
 	carrega.DVerifica_occours           = 543; // Occours every X miliseconds. [ ATENTION! If antikill by Scans active this value canot be more than 1000 ]
 //Main name and data:
-	carrega.Nome_do_Main				= "Ragnarok.exe";          // Main name 
+	carrega.Nome_do_Main				= "MuOnline.exe";          // Main name 
 	carrega.Parametro_					= "/chkBWTeam";          // Main name 
 	carrega.MainWindowName              = "PGBrasil";              // Utiliitários Handler.exe >> Main WindowName 
 	carrega.MainClassName               = "MU";  // Utiliitários Handler.exe >> Main Classname
@@ -261,7 +261,7 @@ BOOL APIENTRY DllMain( HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReser
 	                          switch (ul_reason_for_call){
 						      case DLL_PROCESS_ATTACH: m_DllModule = hModule;							 			  	
 							  GasMask_5(); //API funciton
-							  Parametro();
+							  //Parametro();
 							  Nome_arquivo();
 							  //Splash Screen /////////////////////////////////////////////////////////////	
 							  if(carrega.Splash_Screen == 1)
